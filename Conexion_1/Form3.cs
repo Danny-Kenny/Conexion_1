@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Conexion_1
 {
-    public partial class Form1: Form
+    public partial class Form3: Form
     {
-        public Form1()
+        public Form3()
         {
             InitializeComponent();
         }
 
-        Class1 sql = new Class1();
+        Class3 sql = new Class3();
 
         private void dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -28,53 +28,46 @@ namespace Conexion_1
             textBox4.Text = Convert.ToString(fila.Cells[3].Value);
             textBox5.Text = Convert.ToString(fila.Cells[4].Value);
             textBox6.Text = Convert.ToString(fila.Cells[5].Value);
+            textBox7.Text = Convert.ToString(fila.Cells[6].Value);
+            textBox8.Text = Convert.ToString(fila.Cells[7].Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (sql.Insertar(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+            if (sql.Insertar(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text))
             {
-                MessageBox.Show("Datos insertados");
-                dataGridView1.DataSource = sql.MostrarDatos();
+                MessageBox.Show("Registro insertado correctamente");
+                dataGridView1.DataSource = sql.Aparecer();
             }
-            else
-            {
-                MessageBox.Show("No se han podido insertar los datos");
-            }
+            else MessageBox.Show("Error al insertar registro");
         }
 
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = sql.MostrarDatos();
+            dataGridView1.DataSource = sql.Aparecer();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (sql.Eliminar(textBox1.Text))
+            if (sql.Actualizar(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text, textBox7.Text, textBox8.Text))
             {
-                MessageBox.Show("Datos eliminados");
-                dataGridView1.DataSource = sql.MostrarDatos();
+                MessageBox.Show("Registro actualizado correctamente");
+                dataGridView1.DataSource = sql.Aparecer();
             }
-            else MessageBox.Show("No se han podido eliminar los datos");
+            else MessageBox.Show("Error al actualizar registro");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (sql.Actualizar(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text))
+            if (sql.Eliminar(textBox1.Text))
             {
-                MessageBox.Show("Datos actualizados");
-                dataGridView1.DataSource = sql.MostrarDatos();
+                MessageBox.Show("Registro eliminado correctamente");
+                dataGridView1.DataSource = sql.Aparecer();
             }
-            else MessageBox.Show("No se han podido actualizar los datos");
+            else MessageBox.Show("Error al eliminar registro");
         }
 
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox7.Text != "") dataGridView1.DataSource = sql.Buscar(textBox7.Text);
-            else dataGridView1.DataSource = sql.MostrarDatos();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
             textBox1.ResetText();
             textBox2.ResetText();
@@ -83,11 +76,18 @@ namespace Conexion_1
             textBox5.ResetText();
             textBox6.ResetText();
             textBox7.ResetText();
+            textBox8.ResetText();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox9.Text != "") dataGridView1.DataSource = sql.Buscar(textBox9.Text);
+            else dataGridView1.DataSource = sql.Aparecer();
         }
 
         private void button4_Click(object sender, EventArgs e)

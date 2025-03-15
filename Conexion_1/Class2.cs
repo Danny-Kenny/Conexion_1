@@ -38,15 +38,11 @@ namespace Conexion_1
         public bool Insertar(string Nombre_C, string Nombre_B, string Familia, string Peligro_E)
         {
             conexion.Open();
-            SqlCommand comando = new SqlCommand(string.Format("insert into Especie values ('{0}', '{1}', '{2}', '{3}', '{4}')", new string[]
-            {
-                Nombre_C, Nombre_B, Familia, Peligro_E
-            }), conexion);
+            SqlCommand comando = new SqlCommand(string.Format("insert into Especie values ('{0}', '{1}', '{2}', '{3}')", Nombre_C, Nombre_B, Familia, Peligro_E), conexion);
 
             int afectadas = comando.ExecuteNonQuery();
             conexion.Close();
-            if (afectadas > 0) return true;
-            else return false;
+            return afectadas > 0;
         }
 
         public bool Eliminar(string Nombre_C)
@@ -63,15 +59,11 @@ namespace Conexion_1
         public bool Actualizar(string Nombre_C, string Nombre_B, string Familia, string Peligro_E)
         {
             conexion.Open();
-            SqlCommand comando = new SqlCommand(string.Format("update Especie set Nombre_B = '{0}', Familia = '{1}', Peligro_E = '{2}' where Nombre_C = '{3}'", new string[]
-            {
-                Nombre_C, Nombre_B, Familia, Peligro_E
-            }), conexion);
+            SqlCommand comando = new SqlCommand(string.Format("update Especie set Nombre_B = '{1}', Familia = '{2}', Peligro_E = '{3}' where Nombre_C = '{0}'", Nombre_C, Nombre_B, Familia, Peligro_E), conexion);
 
-            int afectados = comando.ExecuteNonQuery();
+            int afectadas = comando.ExecuteNonQuery();
             conexion.Close();
-            if (afectados > 0) return true;
-            else return false;
+            return afectadas > 0;
         }
     }
 }

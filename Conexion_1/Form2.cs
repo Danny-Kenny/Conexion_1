@@ -84,5 +84,12 @@ namespace Conexion_1
             }
             else MessageBox.Show("No se han eliminado");
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form4 Menu = new Form4();
+            Menu.Show();
+            this.Hide();
+        }
     }
 }
