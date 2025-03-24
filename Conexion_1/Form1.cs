@@ -15,6 +15,7 @@ namespace Conexion_1
         public Form1()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         Class1 sql = new Class1();
@@ -87,7 +88,9 @@ namespace Conexion_1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Form4 Menu = new Form4();
+            Menu.Show();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)

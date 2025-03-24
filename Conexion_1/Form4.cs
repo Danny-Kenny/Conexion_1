@@ -15,6 +15,7 @@ namespace Conexion_1
         public Form4()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void loginInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,6 +45,13 @@ namespace Conexion_1
         private void button6_Click(object sender, EventArgs e)
         {
             Form3 Go = new Form3();
+            Go.Show();
+            this.Hide();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form5 Go = new Form5();
             Go.Show();
             this.Hide();
         }
